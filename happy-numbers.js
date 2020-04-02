@@ -14,32 +14,24 @@
 
 // SOLUTION
 
-const numArr = (num) => {
-    const arr = num.toString().split('')
-    for (let i = 0; i < arr.length; i++) {
-        arr[i] = parseInt(arr[i])
-    }
-    return arr
-}
-
-const squareEachDigit = (num) => {
-    const numberArray = numArr(num)
-    let squaredByDigit = 0
-    for (let n of numberArray) {
-        squaredByDigit += n*n
-    }
-    return squaredByDigit
-}
+const squareEachDigit = (num) => (
+    num.toString().split('')
+    .map(digit => parseInt(digit, 10))
+    .reduce((total, digit) => {return total + digit * digit}, 0)
+)
 
 const isHappy = function(n) {
-    let squaredByDigit = squareEachDigit(n)
+    let seen = {}
+    seen[n] = true
     let counter = 0
-    while (squaredByDigit != 1) {
-        squaredByDigit = squareEachDigit(squaredByDigit)
+    while (n > 1) {
+        n = squareEachDigit(n)
+        if (seen[n]) n = -1
+        seen[n] = true
         counter++
-        if (counter >= 100) return false
+        if (counter >= 1000) return false
     }
-    return squaredByDigit === 1
+    return n === 1
 };
 
 console.log('isHappy(19) //=>', isHappy(19))
