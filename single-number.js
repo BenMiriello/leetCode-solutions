@@ -17,7 +17,7 @@
 
 var singleNumber = function(nums) {
     let numsObj = {}
-    for (let i = 0; i < nums.length; i++) {
+    for (i = 0; i < nums.length; i++) {
         if (!numsObj[nums[i]]) {
             numsObj[nums[i]] = 1
         } else {
@@ -25,9 +25,29 @@ var singleNumber = function(nums) {
         }
     }
     let keys = Object.keys(numsObj)
-    for (let i = 0; i < keys.length; i++) {
+    for (i = 0; i < keys.length; i++) {
         if (numsObj[keys[i]] === 1) {
             return parseInt(keys[i])
         }
     }
 };
+
+let res = singleNumber([2,2,1])
+console.log(res, res === 1)
+let res2 = singleNumber([17,12,5,-6,12,4,17,-5,2,-3,2,4,5,16,-3,-4,15,15,-4,-5,-6])
+console.log(res2, res2 === 16)
+
+// var singleNumber = function(nums) {
+//     let once = nums[0]
+//     console.log(once)
+//     for (let i = 1; i < nums.length; i++) {
+//         if (!once) {
+//             once = nums[i]
+//             console.log('i //=>', i, '!once //=>', once)
+//         } else if (nums[i] === once) {
+//             once = null
+//             console.log('i //=>', i, '===nums[i] //=>', once)
+//         }
+//     }
+//     return once
+// };
