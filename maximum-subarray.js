@@ -16,18 +16,13 @@ If you have figured out the O(n) solution, try coding another solution using the
  * @return {number}
  */
 
-// SOLUTION (cubic)
+// SOLUTION
 
 var maxSubArray = function(nums) {
-    let maxSum = nums[0]
-    for (let outerIdx = 0; outerIdx < nums.length; outerIdx++){
-        let subSum = 0
-        for (let innerIdx = outerIdx; innerIdx < nums.length; innerIdx++) {
-            subSum += nums[innerIdx]
-            maxSum = Math.max(subSum, maxSum)
-        }
+    for (let n = 1; n < nums.length; n++){
+      nums[n] = Math.max(nums[n], nums[n] + nums[n-1])
     }
-    return maxSum
+    return Math.max(...nums)
 };
 
 let test = (nums, desired) => {
