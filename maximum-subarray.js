@@ -18,30 +18,60 @@ If you have figured out the O(n) solution, try coding another solution using the
 
 // SOLUTION (incomplete)
 
+// Outer array  =>    [n,n,n,n,n]
+// Outer Idx    =>       ^
+// SubsetLength => up to ^ ^ ^ ^
+// Inner Idx    => from  ^  to ^
+
 var maxSubArray = function(nums) {
-  let maxSum = null
-  for (let i = 0; i < nums.length; i++){
-      let subSum = 0
-      let containsNumber = false
-      let subLength = 4
-      // instead of subLength being hard coded to 4 which was a mistake,
-      // need to iterate through all potential lengths starting from point i
-      // make another for loop around the j for loop
-      for (let j = i; j < i + subLength; j++) {
-          if (typeof nums[j] === 'number'){
-              containsNumber = true
-              subSum += nums[j]
-          }
-      }
-      if (containsNumber) {
-          if (maxSum) {
-              if (subSum > maxSum){
-                  maxSum = subSum
-              }
-          } else {
-              maxSum = subSum
-          }
-      } 
-  }
-  return maxSum
+    // console.log('\n\nARRAY: ', nums)
+    // maxsum is null just in case there are no numbers.
+    // Also, starting at 0 could bias outcome since some arrays could be all negative numbers.
+    let maxSum = null
+    // perform a series of checks starting from each index of the given array
+    for (let outerIdx = 0; outerIdx < nums.length; outerIdx++){
+        // console.log('outerIdx => ', outerIdx)
+        // from each index, compare an array of varying lengths from 1 to max
+        for (let subsetLength = 1; subsetLength < nums.length - outerIdx + 1; subsetLength++){
+            // console.log('. subsetLength => ', subsetLength)
+            let subSum = 0
+            let containsNumber = false
+            // add each up for a given subset
+            for (let innerIdx = outerIdx; innerIdx < outerIdx + subsetLength; innerIdx++) {
+                // console.log('......... innerIdx => ', innerIdx)
+                if (typeof nums[innerIdx] === 'number'){
+                    containsNumber = true
+                    subSum += nums[innerIdx]
+                }
+            }
+            // console.log('* ............. maxSum => ', maxSum)
+            // console.log('* ............. subSum => ', subSum)
+            if (containsNumber) {
+                // console.log('!!maxSum => ', !!maxSum)
+                if (typeof maxSum === 'number') {
+                    // set new maxSum if greater
+                    // console.log('subSum > maxSum => ', subSum > maxSum)
+                    if (subSum > maxSum){
+                        // console.log('* ............. subSum > maxSum => ', subSum, '>', maxSum)
+                        maxSum = subSum
+                    }
+                // case fires only for first subset that contains a number
+                } else {
+                    maxSum = subSum
+                }
+            } 
+            // console.log('* ............. maxSum => ', maxSum)
+        }   
+    }
+    // console.log('nums.length => ', nums.length)
+    return maxSum
 };
+
+let test = (nums, desired) => {
+  let result = maxSubArray(nums)
+  console.log(`[ ${nums} ] //=> `, result, ' * ', result === desired)
+}
+test([-2,1,-3,4,-1,2,1,-5,4], 6)
+test([1], 1)
+test([-1,0,-2], 0)
+
