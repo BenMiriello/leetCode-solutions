@@ -26,34 +26,52 @@
  * @param {string} T
  * @return {boolean}
  */
+
 var backspaceCompare = function(S, T) {
 
-  S = S.split('')
-  T = T.split('')
-
-  function processDeletions(arr){
-    for (let i = 1; i < arr.length; i++) {
-      while (arr[0] === '#') arr.shift()
-      if (arr[i] === '#') {
-        arr.splice(i - 1, 2)
-        i -= 2
-      }
+  const process = (str) => {
+    let stack = []
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === '#') stack.pop()
+      else stack.push(str[i])
     }
+    return stack.join('')
   }
-
-  processDeletions(S)
-  processDeletions(T)
-
-  if (S.length !== T.length) return false
-
-  for (let i = 0; i < S.length; i++) {
-    if (S[i] !== T[i]) return false
-  }
-
-  return true
+  return process(S) === process(T)
 };
 
+// var backspaceCompare = function(S, T) {
+
+//   S = S.split('')
+//   T = T.split('')
+
+//   function processDeletions(arr){
+//     for (let i = 1; i < arr.length; i++) {
+//       while (arr[0] === '#') arr.shift()
+//       if (arr[i] === '#') {
+//         arr.splice(i - 1, 2)
+//         i -= 2
+//       }
+//     }
+//   }
+
+//   processDeletions(S)
+//   processDeletions(T)
+
+//   if (S.length !== T.length) return false
+
+//   for (let i = 0; i < S.length; i++) {
+//     if (S[i] !== T[i]) return false
+//   }
+
+//   return true
+// };
+
+let before = new Date().getTime()
 console.log(backspaceCompare("a##c", "#a#c")) // true
 console.log(backspaceCompare("ab##", "c#d#")) // true
 console.log(backspaceCompare("a##c", "#a#c")) // true
 console.log(backspaceCompare("a#c", "b")) // false
+console.log(new Date().getTime() - before)
+
+
