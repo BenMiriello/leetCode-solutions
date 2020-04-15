@@ -18,34 +18,52 @@
  * @return {number[]}
  */
 
-var productExceptSelf = function(nums) {
+const productExceptSelf = nums => {
+    let fromStart = 1
     const fromEnd = [1, nums[nums.length - 1]]
     for (let i = nums.length - 2; i > 0; i--) {
-      fromEnd.push(fromEnd[fromEnd.length - 1] * nums[i])
+        fromEnd.push(fromEnd[fromEnd.length - 1] * nums[i])
     }
-    // example: nums = [1,2,3,4], fromStart = [6,2,1,1], fromEnd = [1,4,12,24]
-    const fromStart = [1, nums[0]]
-    for (let i = 1; i < nums.length - 1; i++) {
-      fromStart.push(fromStart[fromStart.length - 1] * nums[i])
-    }
-    fromStart.reverse()
   
-    const result = []
+    // example: if nums = [1,2,3,4], fromEnd = [1,4,12,24] & fromStart = 1 => 1 => 2 => 6
+    const result = Array(nums.length)
     for (let i = 0; i < nums.length; i++) {
-      result.push(fromStart.pop() * fromEnd.pop())
+        result[i] = fromStart * fromEnd.pop()
+        fromStart *= nums[i]
     }
   
     return result
-  }
+}
+
+
+const test = (input, expected) => {
+console.log()
+console.log(input)
+let result = productExceptSelf(input)
+console.log(result.join('') == expected.join('') ? 'PASSED' : 'FAILED', '|', result)
+}
+
+test([1,2,3,4], [24,12,8,6])
+test([9,0,-2], [0,-18,0])
   
-  const test = (input, expected) => {
-    console.log()
-    console.log(input)
-    let result = productExceptSelf(input)
-    console.log(result.join('') == expected.join('') ? 'PASSED' : 'FAILED', '|', result)
-  }
+
+
+// var productExceptSelf = function(nums) {
+//     const fromEnd = [1, nums[nums.length - 1]]
+//     for (let i = nums.length - 2; i > 0; i--) {
+//       fromEnd.push(fromEnd[fromEnd.length - 1] * nums[i])
+//     }
+//     // example: nums = [1,2,3,4], fromStart = [6,2,1,1], fromEnd = [1,4,12,24]
+//     const fromStart = [1, nums[0]]
+//     for (let i = 1; i < nums.length - 1; i++) {
+//       fromStart.push(fromStart[fromStart.length - 1] * nums[i])
+//     }
+//     fromStart.reverse()
   
-  test([1,2,3,4], [24,12,8,6])
-  test([9,0,-2], [0,-18,0])
+//     const result = []
+//     for (let i = 0; i < nums.length; i++) {
+//       result.push(fromStart.pop() * fromEnd.pop())
+//     }
   
-  
+//     return result
+//   }
