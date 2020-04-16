@@ -67,3 +67,53 @@ test([9,0,-2], [0,-18,0])
   
 //     return result
 //   }
+
+// ---------------------------------------------------
+
+// const findLatter = (i, len, nums) => {
+//   let latter = 1
+//   for (i; i < len; i++) {
+//     latter *= nums[i]
+//   }
+//   return latter
+// }
+    
+// var productExceptSelf = function(nums) {
+//     let latter = findLatter(1, nums.length, nums)
+//     // for (let h = 1; h < nums.length; h++) {
+//     //   latter *= nums[h]
+//     // }
+
+//     let products = []
+
+//     if (latter === -0) {
+//       products.push(0)
+//     } else {
+//       products.push(latter)
+//     }
+
+//     let former = nums[0]
+//     let len = nums.length - 1
+//     console.log(0, '|', '\\', latter)
+//     for (let i = 1; i < len; i++) {
+//       former *= nums[i - 1]
+//       if (nums[i] === 0) {
+//         latter = findLatter(i, len, nums)
+//         console.log('found:', latter, i, len, nums)
+//       } else {
+//         latter /= nums[i]
+//       }
+//       let current = former * latter
+//       if (current === -0) {
+//         products.push(0)
+//       } else {
+//         products.push(current)
+//       }
+//       console.log(i, '|', former, latter)
+//     }
+//     console.log(nums.length - 2, '|', former * nums[nums.length - 2], '\\')
+//     products.push(former * nums[nums.length - 2])
+
+//     return products
+// };
+
