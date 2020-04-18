@@ -20,21 +20,24 @@
  * @return {number}
  */
 
-const minPathSum = grid => {
-    const traverse = (m, n) => {
-      if (m === grid.length - 1) {
-        if (typeof grid[m][n + 1] === 'number') {
-          return grid[m][n] + traverse(m, n + 1)
-        }
-        return grid[m][n]
-      }
-      if (n === grid[m].length - 1) {
-        return grid[m][n] + traverse(m + 1, n)
-      }
-      return grid[m][n] + Math.min(traverse(m,n + 1), traverse(m + 1, n))
+var minPathSum = function(grid) {
+    if (!grid || !grid.length) return 0;
+    let temp = [[grid[0][0]]];
+    let m = grid.length, n = grid[0].length;
+    for (let j = 1; j < n; j++) {
+        temp[0][j] = temp[0][j-1] + grid[0][j];
     }
-    return traverse(0,0)
-  };
+    for (let i = 1; i < m; i++) {
+        temp[i] = [];
+        temp[i][0] = temp[i-1][0] + grid[i][0];
+    }
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            temp[i][j] = Math.min(temp[i][j-1], temp[i-1][j]) + grid[i][j];
+        }
+    }
+    return temp[m-1][n-1];
+};
   
   
   const test = (input, expected) => {
@@ -75,4 +78,18 @@ const minPathSum = grid => {
     27
   )
   
-  
+  // const minPathSum = grid => {
+//     const traverse = (m, n) => {
+//       if (m === grid.length - 1) {
+//         if (typeof grid[m][n + 1] === 'number') {
+//           return grid[m][n] + traverse(m, n + 1)
+//         }
+//         return grid[m][n]
+//       }
+//       if (n === grid[m].length - 1) {
+//         return grid[m][n] + traverse(m + 1, n)
+//       }
+//       return grid[m][n] + Math.min(traverse(m,n + 1), traverse(m + 1, n))
+//     }
+//     return traverse(0,0)
+//   };
