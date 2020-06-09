@@ -1,12 +1,15 @@
 var moveZeroes = function(nums) {
   for (let i = 0; i < nums.length; i++) {
-      if (nums[i] === 0) {
-          nums.push(...nums.splice(i,1))
-          if (nums.slice(i).some(n => n != 0)) i--;
-          else return nums
+    if (nums[i] === 0) {
+      nums.push(...nums.splice(i,1))
+      if (nums.slice(i).some(n => n != 0)) {
+        i--;
+      } else { 
+        return nums;
       }
+    }
   }
-  return nums
+  return nums;
 };
 
 

@@ -72,6 +72,12 @@ const reverse = matrix =>  matrix.map(row => row.reverse());
 
 const rotate = matrix => reverse(transpose(matrix));
 
+const rotate = matrix => {
+    return matrix.map((row, i) => 
+         row.map((val, j) => matrix[matrix.length - 1 - j][i])
+    );
+};
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 const equalArrays = (arr1, arr2) => {
