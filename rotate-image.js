@@ -45,17 +45,53 @@
  * @param {number[][]} matrix
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
-const rotate = matrix => {
-    return matrix
-};
+
+// function reverse(nums, start = 0, end = nums.length - 1) {
+//     while (start < end) {
+//         tmp = nums[start]
+//         nums[start] = nums[end]
+//         nums[end] = tmp
+//         start++
+//         end--
+//     }
+//     return nums
+// }
+
+const transpose = matrix => {
+    for (let row = 0; row < matrix.length; row++) {
+        for (let col = 0; col < row; col++) {
+            let temp = matrix[row][col]
+            matrix[row][col] = matrix[col][row]
+            matrix[col][row] = temp
+        }
+    }
+    return matrix;
+}
+
+const reverse = matrix =>  matrix.map(row => row.reverse());
+
+const rotate = matrix => reverse(transpose(matrix));
+
+///////////////////////////////////////////////////////////////////////////////////
+
+const equalArrays = (arr1, arr2) => {
+    if (arr1.length !== arr2.length) return false;
+    for (let row = 0; row < arr1.length; row++) {
+        for (let cell = 0; cell < arr1[row].length; cell++) {
+            if (arr1[row][cell] !== arr2[row][cell]) return false;
+        }
+    }
+    return true;
+}
 
 const test = (matrix, expected) => {
-    console.log('\nTesting: ' + JSON.stringify(matrix))
-    const result = rotate(JSON.stringify(matrix))
-    if (result === expected) console.log('PASSED ' + result)
+    console.log('\nTesting: ', matrix);
+    const result = rotate(matrix);
+    console.log('result: ', result)
+    if (equalArrays(result, expected)) console.log('PASSED ', result);
     else {
-        console.log('FAILED ' + result)
-        console.log('Expected: ', expected)
+        console.log('FAILED ', result);
+        console.log('Expected: ', expected);
     }
 }
 
