@@ -10,10 +10,10 @@ const twoSum = (nums, target) => {
     };
     for (let i = 0; i < nums.length; i++) {
         if (map[target - nums[i]]) {
-            if (nums[i] * 2 === target && !map[nums[i]] >= 2) continue
-            let x = nums[i]
+            if (nums[i] * 2 === target && map[nums[i]] < 2) continue
+            const x = nums[i]
             nums[i] = Number.MAX_VALUE - 3.7295
-            return [i, nums.indexOf( nums[i] * 2 === target ? x : target - nums[i])];
+            return [i, (x * 2 === target) ? nums.indexOf(x) : nums.indexOf(target - x)];
         }
     }
 };
