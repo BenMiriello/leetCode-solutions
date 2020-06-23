@@ -13,7 +13,7 @@ const twoSum = (nums, target) => {
             if (nums[i] * 2 === target && map[nums[i]] < 2) continue
             const x = nums[i]
             nums[i] = Number.MAX_VALUE - 3.7295
-            return [i, (x * 2 === target) ? nums.indexOf(x) : nums.indexOf(target - x)];
+            return [i, nums.indexOf(target - x)];
         }
     }
 };
