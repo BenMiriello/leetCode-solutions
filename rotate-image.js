@@ -70,8 +70,13 @@ const transpose = matrix => {
 
 const reverse = matrix =>  matrix.map(row => row.reverse());
 
-const rotate = matrix => reverse(transpose(matrix));
+// // clockwise
+// const rotate = matrix => reverse(transpose(matrix));
 
+// // counter-clockwise
+// const rotate = matrix => transpose(reverse(matrix));
+
+// nested .map() all-in-one solution
 const rotate = matrix => {
     return matrix.map((row, i) => 
          row.map((val, j) => matrix[matrix.length - 1 - j][i])
@@ -93,7 +98,6 @@ const equalArrays = (arr1, arr2) => {
 const test = (matrix, expected) => {
     console.log('\nTesting: ', matrix);
     const result = rotate(matrix);
-    console.log('result: ', result)
     if (equalArrays(result, expected)) console.log('PASSED ', result);
     else {
         console.log('FAILED ', result);
