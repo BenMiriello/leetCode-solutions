@@ -4,7 +4,7 @@
  * @return {number}
  */
 
-var subarraySum = function(nums, k) {
+const subarraySum = (nums, k) => {
     let count = sum = 0;
     const map = {0: 1};
     for (let i = 0; i < nums.length; i++) {
