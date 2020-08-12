@@ -2,7 +2,7 @@
  * @param {character[][]} board
  * @return {boolean}
  */
-var isValidSudoku = function(board) {
+const isValidSudoku = (board) => {
     const subBoxes = [[0,0,0], [0,0,0], [0,0,0]];
     for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
