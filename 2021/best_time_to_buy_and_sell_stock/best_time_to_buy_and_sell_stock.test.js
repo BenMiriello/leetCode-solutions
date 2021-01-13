@@ -1,5 +1,7 @@
 const maxProfit = require('./best_time_to_buy_and_sell_stock');
 
-test("Returns basic string interpolation so you know it's there", () => {
-  expect(maxProfit('a gorillion dollars')).toBe('big profits: a gorillion dollars');
+test("Best time to buy and sell stock", () => {
+  for (const test of maxProfit.tests) {
+    expect(maxProfit.maxProfit(test.args)).toBe(test.expected);
+  }
 });
