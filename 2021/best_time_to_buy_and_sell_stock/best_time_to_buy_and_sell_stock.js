@@ -1,5 +1,5 @@
 const maxProfit = (prices) => {
-  return 'big profits: ' + toString(prices)
+  return 'big profits: ' + prices
 }
 
-export default maxProfit;
+module.exports = maxProfit;
