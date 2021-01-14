@@ -6,7 +6,7 @@ for (const key in Problems) {
   describe(problem.name, () => {
     for (const test of problem.tests) {
       it(`${problem.method.name}(${test.input}) //=> ${test.expected}`, () => {
-        expect(problem.method(test.input)).toBe(test.expected);
+        expect(problem.method(test.input)).toStrictEqual(test.expected);
       })
     }
   });
