@@ -17,15 +17,15 @@ const maxProfit = (prices) => {
 
 const tests = [
   {
-    input: [7,1,5,3,6,4],
+    input: [[7,1,5,3,6,4]],
     expected: 7
   },
   {
-    input: [1,2,3,4,5],
+    input: [[1,2,3,4,5]],
     expected: 4
   },
   {
-    input: [7,6,4,3,1],
+    input: [[7,6,4,3,1]],
     expected: 0
   }
 ];

@@ -15,11 +15,11 @@ const removeDuplicates = (nums) => {
 
 const tests = [
   {
-    input: [1,1,2],
+    input: [[1,1,2]],
     expected: [1,2]
   },
   {
-    input: [0,0,1,1,1,2,2,3,3,4],
+    input: [[0,0,1,1,1,2,2,3,3,4]],
     expected: [0,1,2,3,4]
   },
 ];
