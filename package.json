@@ -4,7 +4,7 @@
     "jest-cli": "^26.6.3"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch-all"
   },
   "jest": {
     "verbose": true
