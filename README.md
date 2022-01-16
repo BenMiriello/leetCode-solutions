@@ -2,14 +2,14 @@
 
 Solutions in 2020 have their own custom test methods or none at all.
 
-Solutions in 2021 all get automatically run through `2021/index.test.js`.
+Solutions in 2022 all get automatically run through `2022/index.test.js`.
 
 ## Testing
 
 To have tests run whenever saving the file you're working on, run: 
 ```jest --watch-all```
 
-In order to make new 2021 test-compliant:
+In order to make new 2022 test-compliant:
 - Declare a variable 'tests' as an array of test objects, each with an input and expected value. For example:
 ```
 const tests = [

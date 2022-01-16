@@ -12,7 +12,7 @@ while (process.argv[argIdx]) {
   argIdx += 1;
 }
 
-write.sync(`2021/${filename.split(' ').join('_').toLowerCase()}.js`, 
+write.sync(`${new Date().getFullYear()}/${filename.split(' ').join('_').toLowerCase()}.js`, 
 `const ${funcname} = (${process.argv[4] || ''}${process.argv[5] ? ', ' + process.argv[5] : ''}${process.argv[6] ? ', ' + process.argv[6] : ''}${process.argv[7] ? ', ' + process.argv[7] : ''}) => {};
 
 const tests = [
