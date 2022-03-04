@@ -28,7 +28,7 @@ const tests = [
     input: [],
     expected: null
   }
-]
+];
 
 module.exports = {
   name: '${filename}',
